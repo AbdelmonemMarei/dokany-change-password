@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom"; 
+import { useSearchParams, useNavigate } from "react-router-dom";
 import styles from "./ChangePassword.module.css";
 import { z } from "zod";
 import { toast } from "react-toastify";
@@ -25,7 +25,7 @@ const changePasswordSchema = z
 
 const ChangePassword = () => {
   const [queryParams] = useSearchParams();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const role = queryParams.get("role");
   const token = queryParams.get("token");
@@ -38,6 +38,7 @@ const ChangePassword = () => {
   const [errors, setErrors] = useState({});
   const [apiError, setApiError] = useState(null);
   const [loading, setLoading] = useState(false);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -70,15 +71,13 @@ const ChangePassword = () => {
 
     try {
       await axios.post(`${API_URL}/auth/${role}/reset-password/confirm`, {
+        token,
         newPassword: formData.newPassword,
-      },{
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
       });
 
       navigate("/success");
     } catch (error) {
+      console.log(error);
       toast.error(error.response?.data?.message || "Something went wrong.");
       setApiError(error.response?.data?.message || "Something went wrong.");
     } finally {
