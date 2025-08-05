@@ -77,7 +77,6 @@ const ChangePassword = () => {
 
       navigate("/success");
     } catch (error) {
-      console.log(error);
       toast.error(error.response?.data?.message || "Something went wrong.");
       setApiError(error.response?.data?.message || "Something went wrong.");
     } finally {
