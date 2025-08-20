@@ -5,7 +5,7 @@ import { z } from "zod";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const API_URL = "https://dokany-api-production.up.railway.app";
+const API_URL = "https://dokany-api.onrender.com";
 
 const changePasswordSchema = z
   .object({
